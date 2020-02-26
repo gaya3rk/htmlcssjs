@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function myfunc()
+{
+var x=document.myform.one.value;
+var y=document.myform.two.value;
+var sum=+x + +y;
+alert(sum);
+}
+</script>
+</head>
+<body>
+<form name=" myform">
+first:
+<input type="number"  name="one"> <br><br>
+second:
+<input type="number"   name="two" ><br><br>
+<input type="submit" value="sum" onclick="myfunc();">
+</form>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function sum()
+{
+var x=document.myform.one.value;
+var y=document.myform.two.value;
+var t=+x + +y;
+alert(t);
+}
+</script>
+</head>
+<body>
+<form name="myform">
+<input type="number" name="one"><br><br>
+<input type="number" name="two"><br><br>
+<input type="button" value="sum" onclick="sum()">
+</form>
+</body>
+</html>

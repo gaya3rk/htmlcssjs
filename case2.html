@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function validate()
+{
+var nme=document.myform.name.value;
+var pwd=document.myform.password.value;
+var addrs=document.myform.addr.value;
+var gend=document.myform.gender.value;
+var con=document.myform.country.value;
+
+if((nme=="")||(nme=="null"))
+	{
+	alert("Enter name");
+	document.myform.name.focus();
+	return false;
+	}
+if((pwd=="")||(pwd=="null"))
+	{
+	alert("Enter password");
+	document.myform.password.focus();
+	return false;
+	}	
+if((pwd.length<7)||(pwd.length>8))
+	{
+	alert("Password should have 8 letters");
+	document.myform.password.focus();
+	return false;
+	}
+if((addrs=="")||(addrs=="null"))
+	{
+	alert("Enter address");
+	document.myform.addr.focus();
+	return false;
+	}
+if((con=="")||(con=="country"))
+	{
+	alert("Select country from drop down");
+	document.myform.country.focus();
+	return false;
+	}
+if((myform.gender[0].checked==false)&&(myform.gender[1].checked==false))
+	{
+	alert("Enter gender");
+	return false;
+	}
+
+alert("submitted successfully");
+}
+</script>
+</head>
+<body>
+<h1 style ="text-align:center;">User Registration Form</h1>
+<form name="myform"> 
+
+Name:<br><br>
+<input type="text"  name="name"><br><br>
+
+Password:<br><br>
+<input type="password" name="password"><br><br>
+
+Address:<br><br>
+<textarea  name="addr" rows="3" cols="25" maxlength="250">
+</textarea><br><br>
+
+Country:
+<select name="country">
+	<option value="Select your country">select your country</option>
+	<option value="China">China</option>
+	<option value="India">India</option>
+	<option value="United States">United States</option>
+	<option value="Pakistan">Pakistan</option>
+	<option value="Nepal">Nepal</option>
+</select><br><br>
+
+Gender:
+<input type="radio"  name="gender" value="male">Male</input>
+<input type="radio"  name="gender" value="Female">Female</input>
+<input type="radio"  name="gender" value="other">Other<br><br></input>
+
+Languages Known:
+<input type="checkbox" name="E" value="English">English</input>
+<input type="checkbox" name="H" value="Hindi">Hindi</input>
+<input type="checkbox" name="T" value="Tamil">Tamil</input>
+<input type="checkbox" name="F" value="French">French</input><br><br>
+<input type="button" value="Submit" onclick="validate()"></input>
+</form>
+</body>
+</html>

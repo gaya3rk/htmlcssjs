@@ -1,0 +1,260 @@
+
+//assignment2.java
+
+
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class assignment2 extends HttpServlet
+{
+	Connection con=null;
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
+		String a=(String)request.getAttribute("username");
+		HttpSession sess=request.getSession();
+		int eno=Integer.parseInt(request.getParameter("eno"));
+		String  ename=request.getParameter("ename");
+		float esal=Float.parseFloat(request.getParameter("esal"));
+		int  eage=Integer.parseInt(request.getParameter("eage"));
+		sess.setAttribute("enoo", eno);
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/gaya3","root","root");
+		PreparedStatement ps=con.prepareStatement("insert into employee values(?,?,?,?)");
+		
+		ps.setInt(1,eno);
+		ps.setString(2,ename);
+		ps.setFloat(3,esal);
+		ps.setInt(4,eage);
+		ps.executeUpdate();
+		//ResultSet rs=ps.executeQuery();
+	}
+		catch(SQLException | ClassNotFoundException se) 
+		{System.out.println(se);}
+		
+		ServletContext context=getServletContext();
+		RequestDispatcher rd=context.getRequestDispatcher("/assisment3.html");
+		rd.forward(request,response);
+}
+}
+
+
+
+
+
+//assignment3.java
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class assignment3 extends HttpServlet
+{
+	Connection con=null;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
+		PrintWriter out=response.getWriter();
+		String a=(String)request.getAttribute("username");
+		try
+		{
+			Class.forName("com.mysql.jdbc.Driver");
+		con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/gaya3","root","root");
+		PreparedStatement ps=con.prepareStatement("select * from employee");
+		ResultSet rs=ps.executeQuery();
+while(rs.next())
+{
+	out.println(rs.getInt("eno"));
+	out.println(rs.getString("ename"));
+	out.println(rs.getFloat("esal"));
+	out.println(rs.getInt("eage"));
+}
+		}
+		catch(SQLException | ClassNotFoundException se) 
+		{System.out.println("ecgfhfhh"+se);}
+	}
+
+}
+
+
+
+
+
+//assignment4.java
+
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class assignment4 extends HttpServlet
+{
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+		{
+			PrintWriter out=response.getWriter();
+			HttpSession sess=request.getSession();
+		    int aa=(int)sess.getAttribute("enoo");
+		    
+		    System.out.println(aa);
+		    
+		    Connection con=null;
+			String  ename=request.getParameter("ename");
+			float esal=Float.parseFloat(request.getParameter("esal"));
+			int  eage=Integer.parseInt(request.getParameter("eage"));
+			PreparedStatement ps=null;
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+			con=(Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/gaya3","root","root");
+			ps=con.prepareStatement("update employee set ename=?,esal=?,eage=? where eno=?");
+			ps.setString(1,ename);
+			ps.setFloat(2,esal);
+			ps.setInt(3,eage);
+			ps.setInt(4, aa);
+			ps.executeUpdate();
+			ps.close();
+			ps=con.prepareStatement("select * from employee");
+			ResultSet rs=ps.executeQuery();
+			while(rs.next())
+			{
+				out.println(rs.getInt("eno"));
+				out.println(rs.getString("ename"));
+				out.println(rs.getFloat("esal"));
+				out.println(rs.getInt("eage"));
+			}
+		}
+			catch(SQLException | ClassNotFoundException se) 
+			{System.out.println(se);}
+
+				}
+
+}
+
+
+
+//assisment.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="assignment1" method="Post">
+username:<input type="text" name="username">
+password:<input type="password" name="password">
+<input type="submit"value="submit">
+</form>
+</body>
+</html>
+
+
+
+
+//assisment2.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="assignment2" method="post">
+Employee Number<input type="text" name="eno"><br><br>
+Employee Name<input type="text" name="ename"><br><br>
+Employee Salary<input type="number" name="esal"><br><br>
+Employee Age<input type="number" name="eage"><br><br>
+<input type="submit" value="submit"><br>
+</form>
+</body>
+</html>
+
+
+
+//assisment3.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form>
+<a href="http://localhost:8077/servletdemo/assignment3">VIEW</a>
+<a href="assisment4.html">MODIFY</a>
+<a href="assisment5.html">DELETE</a>
+</form>
+</body>
+</html>
+
+
+
+
+//assisment4.html
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="assignment4" method="get">
+Employee name<input type="text" name="ename"><br><br>
+Employee Salary<input type="number" name="esal"><br><br>
+Employee Age<input type="number" name="eage"><br><br>
+<input type="submit" value="submit"><br>
+</form>
+</body>
+</html>
+
+
+
+//assisment5.html
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<form action="assignment5" method="get">
+enter the Eno<input type="text" name="eno">
+<input type="submit" value="submit"><br>
+
+</form>
+</body>
+</html>
