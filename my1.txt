@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<title>I love Juicebar</title>
+<link rel="stylesheet" href="juice.css">
+</head>
+<body>
+<div class="header1">
+	<div class="ic1">
+		<img src="m1.jpg" class="icon1">
+	</div>
+	<div class="navbar1">
+		<a class="active" href="#MENU">MENU</a>
+		<a href="#LOCATIONS">LOCATIONS</a>
+ 	 	<a href="#CATERING">CATERING</a>
+  		<a href="#RESET">RESET</a>
+ 	 	<a href="#ABOUT">ABOUT</a>
+  		<a href="#SHOP">SHOP</a>
+  		<a href="#REWARDS">REWARDS</a>
+  		<a href="#CONNECT">CONNECT</a>
+		<a href="#ORDER ONLINE">ORDER ONLINE</a>
+	</div>
+	<div class="ic2">
+		<img src="k1.png" class="icon2">
+	</div>
+</div>
+<div class="im1">
+	<img src="b1.jpg" class="image1">
+</div>
+
+<div class="p">
+<p1 class="para1"><center>juice, smoothies and more!</center></p1>
+<p2 class="para2">
+i love juice bar is on a mission to create great tasting and nutritious juices, smoothies, bowls and bites. our menu is full of fresh offerings that are equally craveable and guilt-free. 
+we take a lot of pride in serving products that are high in nutritional value. our juices are made fresh to order, and our smoothies are made with frozen fruit instead of ice – which is commonly used by other companies as a filler ingredient. we want your drinks to be full of nourishment, not fillers. best of all, we have created a juice bar experience built on convenience. we believe healthy food should be as accessible as fast food. so beyond our made-to-order menu, all of our stores are stocked with grab-and-go options that are perfect for a quick, healthy bite or sip. 
+whether you are a juicing novice or you're a smoothie pro, we've crafted unique recipes that are packed with nutrition, taste amazing and are a quick way to fuel up on healthy ingredients!</p2>
+</div>
+
+<div class="circlearea">
+	<div class="cir1"></div>
+	<div class="cir2"></div>
+	<div class="cir3"></div>
+
+</div>
+
+
+<div class="area">
+	<div class="nice"> 
+		<img src="h1.jpg" class="j13">	
+	</div>
+	<div class="contents">
+	    <p class="para4"><center>we take a lot of pride in using ingredients that are high in quality, responsibly sourced, nutrient-rich, and plant-based to help power you through your daily routine. 
+we never use any added fillers, syrups, sugars or artificial ingredients of any kind and we make all of our menu items fresh for you every single day.
+</center></p>
+	</div>
+</div>
+
+<div class="footer">
+	<ul>
+	<li><a class="active1" href="#c">CONTACTS</a></li>
+	<li><a href="#p>PRIVACY</a></li>
+	<li><a href="#r">RETURN POLICY</a></li>
+	<li><a href="#t">TERMS AND CONDITIONS</a></li>
+	</ul>
+</div>
+<div class="last">
+<a href="#" class="fa fa-facebook"></a>
+<a href="#" class="fa fa-twitter"></a>
+</div>
+</body>
+</html>
